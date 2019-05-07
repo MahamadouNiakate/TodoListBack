@@ -7,9 +7,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/to-do-list-app", {
-  useNewUrlParser: true
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/to-do-list-app",
+  {
+    useNewUrlParser: true
+  }
+);
 
 const Task = mongoose.model("Task", {
   name: {
